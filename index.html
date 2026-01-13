@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>房贷计算器 2026年最新版</title>
+    <title>房贷计算器 2025年最新版</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         * {
@@ -56,7 +56,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-left: -20px;
+            margin-left: -64px;
         }
 
         .header h1 {
@@ -257,13 +257,17 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
+            letter-spacing: 1px;
             transition: all 0.3s;
         }
 
         .tab.active {
             background: #667eea;
             color: white;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 1px;
         }
 
         .tab-content {
@@ -498,17 +502,11 @@
                     </div>
                     <div class="form-group" id="commercialLprGroup">
                         <label>商业LPR利率（%）</label>
-                        <select id="commercialLprRate">
-                            <option value="3.95">3.95% (5年以上)</option>
-                            <option value="3.85">3.85% (5年以上)</option>
-                            <option value="3.75">3.75% (5年以上)</option>
-                            <option value="3.65">3.65% (5年以上)</option>
-                            <option value="3.55">3.55% (5年以上)</option>
-                        </select>
+                        <input type="number" id="commercialLprRate" value="3.5" step="0.01" min="0" max="10" style="appearance: auto;">
                     </div>
                     <div class="form-group" id="commercialBpGroup">
                         <label>商业BP基点（BP，10BP=0.1%）</label>
-                        <input type="number" id="commercialBpValue" value="-30" step="5">
+                        <input type="number" id="commercialBpValue" value="-30" step="5" style="appearance: auto;">
                     </div>
                     <div class="form-group" id="commercialFixedRateGroup" style="display: none;">
                         <label>商业固定利率（%）</label>
@@ -533,10 +531,7 @@
                     </div>
                     <div class="form-group">
                         <label>公积金贷款利率（%）</label>
-                        <select id="providentRate">
-                            <option value="2.85">2.85% (5年以上)</option>
-                            <option value="2.775">2.775% (5年及以下)</option>
-                        </select>
+                        <input type="number" id="providentRate" value="2.6" step="0.01" min="0" max="10" style="appearance: auto;">
                     </div>
                 </div>
 
@@ -588,10 +583,7 @@
 
                 <div class="form-group" id="providentRateGroup" style="display: none;">
                     <label>公积金贷款利率（%）</label>
-                    <select id="providentOnlyRate">
-                        <option value="2.85">2.85% (5年以上)</option>
-                        <option value="2.775">2.775% (5年及以下)</option>
-                    </select>
+                    <input type="number" id="providentOnlyRate" value="2.6" step="0.01" min="0" max="10" style="appearance: auto;">
                 </div>
 
                 <button class="calculate-btn" onclick="calculate()">开始计算</button>
@@ -616,7 +608,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2" style="text-align: center;">
-                                    <a href="https://www.pbc.gov.cn/" target="_blank" style="color: #667eea; text-decoration: none;">房贷利率 &gt;</a>
+                                    <a href="https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125440/125838/125885/index.html" target="_blank" style="color: #667eea; text-decoration: none;">房贷利率 &gt;</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -1018,7 +1010,7 @@
             document.getElementById('epYears').textContent = loanYears + '年';
             
             if (commercialRate !== null && providentRate !== null) {
-                document.getElementById('epRate').textContent = `商业${commercialRate.toFixed(2)}% + 公积金${providentRate.toFixed(2)}%`;
+                document.getElementById('epRate').textContent = `商业${commercialRate.toFixed(2)}% / 公积金${providentRate.toFixed(2)}%`;
             } else if (annualRate !== null) {
                 document.getElementById('epRate').textContent = annualRate.toFixed(2) + '%';
             }
@@ -1033,7 +1025,7 @@
             document.getElementById('eqYears').textContent = loanYears + '年';
             
             if (commercialRate !== null && providentRate !== null) {
-                document.getElementById('eqRate').textContent = `商业${commercialRate.toFixed(2)}% + 公积金${providentRate.toFixed(2)}%`;
+                document.getElementById('eqRate').textContent = `商业${commercialRate.toFixed(2)}% / 公积金${providentRate.toFixed(2)}%`;
             } else if (annualRate !== null) {
                 document.getElementById('eqRate').textContent = annualRate.toFixed(2) + '%';
             }
@@ -1138,5 +1130,4 @@
         calculate();
     </script>
 </body>
-
 </html>
