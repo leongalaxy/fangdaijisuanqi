@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>房贷计算器 2026年最新版</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="navgo.png">
     <style>
         * {
             margin: 0;
@@ -32,21 +32,21 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 10px 30px;
+            background: white;
+            color: #333;
+            padding: 15px 30px;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 20px;
+            border-bottom: 1px solid #eee;
         }
 
         .header-logo {
-            width: 100px;
-            height: 100px;
+            width: auto;
+            height: 60px;
             object-fit: contain;
-            mix-blend-mode: multiply;
             background: transparent;
         }
 
@@ -62,11 +62,13 @@
         .header h1 {
             font-size: 32px;
             margin-bottom: 10px;
+            color: #667eea;
         }
 
         .header p {
             font-size: 14px;
-            opacity: 0.9;
+            color: #666;
+            opacity: 1;
         }
 
         .content {
@@ -122,6 +124,7 @@
             display: flex;
             gap: 15px;
             margin-top: 8px;
+            flex-wrap: wrap;
         }
 
         .radio-group label {
@@ -359,6 +362,7 @@
             display: flex;
             gap: 10px;
             margin-top: 8px;
+            flex-wrap: wrap;
         }
 
         .loan-type-group label {
@@ -421,12 +425,36 @@
         }
 
         @media (max-width: 768px) {
-            .content {
-                grid-template-columns: 1fr;
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 12px;
+            }
+
+            .header {
+                flex-direction: column;
+                padding: 15px;
+                gap: 10px;
+            }
+
+            .header-logo {
+                width: auto;
+                height: 40px;
+            }
+
+            .header-text {
+                margin-left: 0;
             }
 
             .header h1 {
                 font-size: 24px;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+                padding: 20px;
             }
         }
 
@@ -447,7 +475,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="logo.svg" alt="房贷计算器Logo" class="header-logo">
+            <img src="navgo.png" alt="房贷计算器Logo" class="header-logo">
             <div class="header-text">
                 <h1>房贷计算器 2026年最新版</h1>
                 <p>LPR利率与固定利率计算 | 等额本息与等额本金对比</p>
@@ -586,7 +614,7 @@
                     <input type="number" id="providentOnlyRate" value="2.6" step="0.01" min="0" max="10" style="appearance: auto;">
                 </div>
 
-                <button class="calculate-btn" onclick="calculate()">开始计算</button>
+                <button class="calculate-btn" onclick="calculateAndScroll()">开始计算</button>
 
                 <div class="official-links">
                     <h4>央行最新商业贷款基准利率(LPR)</h4>
@@ -614,7 +642,7 @@
                         </tbody>
                     </table>
                     <div style="text-align: right; color: #666; font-size: 12px; margin-top: 10px;">
-                        2026年1月13日更新
+                        2025年12月22日更新
                     </div>
                 </div>
 
@@ -805,6 +833,14 @@
                 calculateProvidentLoan();
             } else if (loanType === 'combined') {
                 calculateCombinedLoan();
+            }
+        }
+
+        function calculateAndScroll() {
+            calculate();
+            const resultSection = document.querySelector('.result-section');
+            if (resultSection) {
+                resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
@@ -1130,5 +1166,4 @@
         calculate();
     </script>
 </body>
-
 </html>
